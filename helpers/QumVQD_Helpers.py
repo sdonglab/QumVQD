@@ -34,8 +34,6 @@ import qutip as qt
 import json
 
 
-# ============= Core Operators ==========
-
 def destroy_tf(N, dtype=tf.complex128):
     """Annihilation operator"""
     a = tf.linalg.diag(tf.sqrt(tf.range(1, N, dtype=tf.float64)), k=1)
@@ -59,17 +57,14 @@ def snap_op_tf(theta_vec, nfock, dtype=tf.complex128):
 
 def beam_splitter_tf(theta, phi, n1, n2, dtype=tf.complex128):
     """Beam splitter BS(θ,φ) between two modes"""
-    # Create operators for both modes
     a1 = destroy_tf(n1, dtype)
     a2 = destroy_tf(n2, dtype)
     a1_dag = create_tf(n1, dtype)
     a2_dag = create_tf(n2, dtype)
 
-    # Identity operators
     I1 = tf.eye(n1, dtype=dtype)
     I2 = tf.eye(n2, dtype=dtype)
 
-    # Tensor products: a1† ⊗ a2 and a1 ⊗ a2†
     a1_dag_a2 = tf.experimental.numpy.kron(a1_dag, a2)
     a1_a2_dag = tf.experimental.numpy.kron(a1, a2_dag)
 
@@ -81,9 +76,6 @@ def beam_splitter_tf(theta, phi, n1, n2, dtype=tf.complex128):
 
     return tf.linalg.expm(1j * gen)
 
-
-
-# ============= Multi-Qumode Operations =============
 
 def tensor_product_list(operators):
     """Compute tensor product of a list of operators"""
@@ -104,11 +96,9 @@ def embed_single_mode_op(op, mode_idx, nfocks, dtype=tf.complex128):
 
 def embed_two_mode_op(op, mode_i, mode_j, nfocks, dtype=tf.complex128):
     """Embed two-mode operator into multi-mode space"""
-    # Create identity operators for all modes
     identities = [tf.eye(n, dtype=dtype) for n in nfocks]
 
     # The beam splitter acts on modes i and j
-    # We need to properly arrange the tensor product
     if mode_i > mode_j:
         mode_i, mode_j = mode_j, mode_i
 
@@ -119,18 +109,14 @@ def embed_two_mode_op(op, mode_i, mode_j, nfocks, dtype=tf.complex128):
 
     for k in range(len(nfocks)):
         if k == mode_i:
-            # Skip - will be handled with mode_j
             continue
         elif k == mode_j:
-            # Insert the beam splitter here
             ops.append(op)
             bs_applied = True
         else:
             ops.append(identities[k])
 
     return tensor_product_list(ops)
-
-# ============= Multi-Qumode Ansatz =============
 
 def unpack_params_multi_qumode(X, nfocks, ndepth):
     """Unpack parameters for multi-qumode ansatz"""
@@ -139,12 +125,10 @@ def unpack_params_multi_qumode(X, nfocks, ndepth):
 
     idx = 0
 
-    # Displacement parameters: ndepth × n_modes complex numbers
     n_disp = ndepth * n_modes
     alphas = tf.reshape(X[idx:idx+n_disp], (ndepth, n_modes))
     idx += n_disp
 
-    # SNAP parameters: ndepth × sum(nfocks) angles
     n_snap = ndepth * sum(nfocks)
     thetas = []
     for i, nfock in enumerate(nfocks):
@@ -152,7 +136,6 @@ def unpack_params_multi_qumode(X, nfocks, ndepth):
         thetas.append(theta_mode)
         idx += ndepth * nfock
 
-    # Beam splitter parameters: ndepth × n_bs_pairs × 2 (theta, phi)
     n_bs = ndepth * n_bs_pairs * 2
     bs_params = tf.reshape(X[idx:idx+n_bs], (ndepth, n_bs_pairs, 2))
 
@@ -163,20 +146,13 @@ def multi_qumode_ansatz_layer(alpha_vec, theta_vecs, bs_params, nfocks, dtype=tf
     n_modes = len(nfocks)
     total_dim = np.prod(nfocks)
 
-    # Start with identity
     U = tf.eye(total_dim, dtype=dtype)
 
-    # Apply SNAP-displacement to each mode
     for i in range(n_modes):
-        # SNAP
         S = snap_op_tf(theta_vecs[i], nfocks[i], dtype)
-        # Displacement
         D = displace_tf(nfocks[i], alpha_vec[i], dtype)
-        # Combined
         SD = tf.matmul(S, D)
-        # Embed in full space
         SD_full = embed_single_mode_op(SD, i, nfocks, dtype)
-        # Apply
         U = tf.matmul(SD_full, U)
 
     # Apply beam splitters between all pairs
@@ -186,13 +162,10 @@ def multi_qumode_ansatz_layer(alpha_vec, theta_vecs, bs_params, nfocks, dtype=tf
             theta_bs = bs_params[bs_idx, 0]
             phi_bs = bs_params[bs_idx, 1]
 
-            # Create beam splitter
             BS = beam_splitter_tf(theta_bs, phi_bs, nfocks[i], nfocks[j], dtype)
 
-            # Embed in full space
             BS_full = embed_two_mode_op(BS, i, j, nfocks, dtype)
 
-            # Apply
             U = tf.matmul(BS_full, U)
             bs_idx += 1
 
@@ -201,29 +174,21 @@ def multi_qumode_ansatz_layer(alpha_vec, theta_vecs, bs_params, nfocks, dtype=tf
 @tf.function
 def multi_qumode_ansatz_tf(Xvec, nfocks, ndepth, dtype=tf.complex128):
     """Full multi-qumode ansatz with depth D"""
-    # Unpack parameters
     alphas, thetas, bs_params = unpack_params_multi_qumode(Xvec, nfocks, ndepth)
 
-    # Total dimension
     total_dim = tf.reduce_prod(nfocks)
 
-    # Initialize with identity
     U = tf.eye(total_dim, dtype=dtype)
 
-    # Apply layers
     for d in range(ndepth):
-        # Get parameters for this layer
         alpha_d = alphas[d]
         theta_d = [thetas[i][d] for i in range(len(nfocks))]
         bs_d = bs_params[d]
 
-        # Apply layer
         U_layer = multi_qumode_ansatz_layer(alpha_d, theta_d, bs_d, nfocks, dtype)
         U = tf.matmul(U_layer, U)
 
     return U
-
-# ============= State Preparation =============
 
 def multi_qumode_vacuum(nfocks, dtype=tf.complex128):
     """Create vacuum state |0,0,...,0⟩"""
@@ -240,9 +205,8 @@ def state_from_ansatz_multi_qumode(Xvec, nfocks, ndepth, dtype=tf.complex128):
     U = multi_qumode_ansatz_tf(Xvec, nfocks, ndepth, dtype)
     return tf.matmul(U, vac)
 
-# ============= Energy and Overlap =============
 
-@tf.function#(jit_compile=True)
+@tf.function
 def energy_multi_qumode(psi, H_ops, coeffs):
     """Compute ⟨ψ|H|ψ⟩ for multi-qumode system"""
     energy = tf.constant(0.0, dtype=tf.float64)
@@ -257,7 +221,7 @@ def energy_multi_qumode(psi, H_ops, coeffs):
 
     return energy
 
-@tf.function#(jit_compile=True)
+@tf.function
 def energy_full_H(psi, H):
     """Compute ⟨ψ|H|ψ⟩ for full Hamiltonian"""
     H_psi = tf.matmul(H, psi)
@@ -278,12 +242,11 @@ def compute_overlap(psi1, psi2):
     return tf.abs(overlap) ** 2
 
 
-# ============= VQD Loss Function =============
 
 def vqd_loss_multi_qumode(Xvec, H_ops, coeffs, prev_states_params, betas,
                           nfocks, ndepth, full_bosonic_H = None):
     """VQD loss with overlap penalties for multi-qumode system"""
-    # Current state
+
     psi = state_from_ansatz_multi_qumode(Xvec, nfocks, ndepth)
 
     # Energy
@@ -303,7 +266,6 @@ def vqd_loss_multi_qumode(Xvec, H_ops, coeffs, prev_states_params, betas,
 
     return energy + overlap_penalty
 
-# ============= Main VQD Function =============
 
 def multi_qumode_vqd(H_ops=None, coeffs=None, nfocks=[16], ndepth=20,
                      prev_states_params=None, betas=None,
@@ -312,14 +274,18 @@ def multi_qumode_vqd(H_ops=None, coeffs=None, nfocks=[16], ndepth=20,
     """
     VQD for multi-qumode systems
 
-    Parameters:
-    -----------
-    H_ops : List of Hamiltonian operators in full multi-qumode space
-    coeffs : Hamiltonian coefficients
-    nfocks : List of Fock cutoffs for each mode
-    ndepth : Circuit depth
-    prev_states_params : Parameters of previously found states
-    betas : Overlap penalty weights
+    Arguments:
+    H_ops -- List of Hamiltonian operators in full multi-qumode space
+    coeffs -- coefficients for each operator in H_ops
+    nfocks -- List of Fock cutoffs for each mode
+    ndepth -- Ansatz depth
+    betas -- List of overlap penalty weights for previously found states (length should match prev_states_params)
+    niter -- Maximum number of iterations for classical optimizer
+    threshold -- Convergence threshold for optimizer
+    parallel_iterations -- Number of parallel iterations for optimizer
+    Xvec -- Initial parameters for ansatz 
+    full_bosonic_H -- Optional full Hamiltonian matrix for direct energy evaluation. Tends to be more efficient than using H_ops.
+    prev_state_params -- List of parameter vectors for previously found states (for overlap penalties)
     """
     if prev_states_params is None:
         prev_states_params = []
@@ -328,12 +294,10 @@ def multi_qumode_vqd(H_ops=None, coeffs=None, nfocks=[16], ndepth=20,
 
     H_ops_tf = None
     coeffs_tf = None
-    # Convert operators to TensorFlow
     if H_ops is not None and coeffs is not None:
       H_ops_tf = tf.stack([tf.constant(H, dtype=tf.complex128) for H in H_ops])
       coeffs_tf = tf.constant(coeffs, dtype=tf.float64)
 
-    # Parameter dimensions
     n_modes = len(nfocks)
     n_bs_pairs = n_modes * (n_modes - 1) // 2
     dim_params = ndepth * (n_modes + sum(nfocks) + 2 * n_bs_pairs)
@@ -349,13 +313,13 @@ def multi_qumode_vqd(H_ops=None, coeffs=None, nfocks=[16], ndepth=20,
         Xvec = tf.Variable(Xvec, dtype=tf.float64)
 
     # Loss function
-    @tf.function#(jit_compile=True)
+    @tf.function
     def loss_fn(X):
         return vqd_loss_multi_qumode(X, H_ops_tf, coeffs_tf, prev_states_params,
                                      betas, nfocks, ndepth, full_bosonic_H = full_bosonic_H)
 
     # Gradient function
-    @tf.function#(jit_compile=True)
+    @tf.function
     def value_and_gradients(X):
         with tf.GradientTape() as tape:
             tape.watch(X)
@@ -372,7 +336,6 @@ def multi_qumode_vqd(H_ops=None, coeffs=None, nfocks=[16], ndepth=20,
         parallel_iterations=parallel_iterations
     )
 
-    # Final energy (without penalties)
     final_state = state_from_ansatz_multi_qumode(result.position, nfocks, ndepth)
     if full_bosonic_H is not None:
       final_energy = energy_full_H(final_state, full_bosonic_H)
@@ -381,7 +344,6 @@ def multi_qumode_vqd(H_ops=None, coeffs=None, nfocks=[16], ndepth=20,
 
     return final_energy, result.position, result, final_state
 
-# ============= Qubit to Multi-Qumode Mapping =============
 
 def qt2tf(qt_object, dtype=tf.complex128):
     """Convert QuTip object to TensorFlow tensor"""
@@ -399,24 +361,18 @@ def get_multi_qumode_ops(qubit_ham, op_dict, n_qubits, quditvec, verb=1):
     """
     Map qubit Hamiltonian to multi-qumode operators
 
-    Parameters:
-    -----------
-    qubit_ham : OpenFermion QubitOperator
-    op_dict : Pre-computed SNAP parameters dictionary
-    n_qubits : Total number of qubits
-    quditvec : List of qubits per mode, e.g., [4, 4] for H4
+    Arguments:
+    qubit_ham -- OpenFermion QubitOperator
+    op_dict -- Pre-computed SNAP parameters dictionary
+    n_qubits -- Total number of qubits
+    quditvec -- List of qubits per mode, e.g., [4, 4] for H4
 
-    Returns:
-    --------
-    mode_op_lists : List of lists - one list of 16×16 operators per qumode
-    coeffs : Corresponding coefficients
     """
     import qutip as qt
 
     n_modes = len(quditvec)
-    nfock = 16  # Fixed for 4 qubits per mode
+    nfock = 16  
 
-    # Get qubit strings and coefficients
     ops_list, coeffs = qubit_string_from_openfermion(qubit_ham, n_qubits, quditvec)
 
     if verb:
@@ -443,7 +399,6 @@ def get_multi_qumode_ops(qubit_ham, op_dict, n_qubits, quditvec, verb=1):
             U = snap_uni_four_pauli(pauli_str, op_dict)
             mode_op_lists[mode_idx].append(U)
 
-    # Convert to TensorFlow if needed
     mode_op_lists_tf = []
     for mode_ops in mode_op_lists:
         mode_ops_tf = [qt2tf(op) for op in mode_ops]
@@ -466,13 +421,32 @@ def partition_qubits(n_qubits, qubits_per_mode=4):
 
     return partitions
 
-# ============= Helper: Find Multiple States =============
 
 def find_excited_states_multi_qumode(H_ops=None, coeffs=None, nfocks=[16], ndepth=20, num_states=1,
                                      beta_factor=3.0, niter=2000, threshold=1e-10,
                                      parallel_iterations=1, Xvec = None, full_bosonic_H = None,
                                      prev_state_params = [], save_files = False, save_dir = None, hhdis = None):
-    """Find ground and excited states using multi-qumode VQD"""
+    """
+    Find ground and excited states using multi-qumode VQD
+    
+    Arguments:
+    H_ops -- List of Hamiltonian operators in full multi-qumode space
+    coeffs -- coefficients for each operator in H_ops
+    nfocks -- List of Fock cutoffs for each mode
+    ndepth -- Ansatz depth
+    num_states -- Total number of states to find (including ground state)
+    beta_factor -- Overlap penalty weight for excited states
+    niter -- Maximum number of iterations for classical optimizer
+    threshold -- Convergence threshold for optimizer
+    parallel_iterations -- Number of parallel iterations for optimizer
+    Xvec -- Initial parameters for ansatz 
+    full_bosonic_H -- Optional full Hamiltonian matrix for direct energy evaluation. Tends to be more efficient than using H_ops.
+    prev_state_params -- List of parameter vectors for previously found states (for overlap penalties)
+    save_files -- Whether to save results to files after each state is found
+    save_dir -- Directory to save results if save_files is True
+    hhdis -- radial distances used (only used when saving data to files)    
+    """
+
     energies = []
     state_params = prev_state_params.copy()
     results = []
@@ -508,8 +482,6 @@ def find_excited_states_multi_qumode(H_ops=None, coeffs=None, nfocks=[16], ndept
                 full_bosonic_H = full_bosonic_H
             )
 
-
-
         # Check orthogonality
         state_overlaps = []
         if k > 0:
@@ -541,7 +513,6 @@ def unpack_params_snap_disp_tf(X, nfock):
     """
     ndepth = tf.shape(X)[0] // (nfock + 1)
 
-    # Unpack using TensorFlow operations
     alpha = X[:ndepth]
     d1 = ndepth * nfock
     theta = tf.reshape(X[ndepth:ndepth+d1], (ndepth, nfock))
@@ -580,12 +551,9 @@ def ham_linear_sym_h4(R, f2q='JWT'):
     molecule = MolecularData(geometry, basis, multiplicity, charge)
 
     # Hartree-Fock
-    hf_molecule = run_pyscf(molecule, run_scf=1, run_fci=0, verbose = 0) # was run_fci=1, verbose = 1 but that gave an error. Not sure why
+    hf_molecule = run_pyscf(molecule, run_scf=1, run_fci=0, verbose = 0) 
 
-
-    # Fermionic Hamiltonian
     ham_fermi = get_fermion_operator(hf_molecule.get_molecular_hamiltonian())
-    #ham_fermi = get_fermion_operator(molecule.get_molecular_hamiltonian())
 
 
     # Qubit mapping
@@ -621,13 +589,10 @@ def ham_linear_sym_h2(R, f2q='JWT'):
     # Hartree-Fock
     hf_molecule = run_pyscf(molecule, run_scf=1, verbose = 1)
 
-    #print(hf_molecule.get_molecular_hamiltonian())
+    #print(hf_molecule.get_molecular_hamiltonian()) # for testing
 
     # Fermionic Hamiltonian
     ham_fermi = get_fermion_operator(hf_molecule.get_molecular_hamiltonian())
-    #ham_fermi = get_fermion_operator(molecule.get_molecular_hamiltonian())
-
-    #print(ham_fermi)
 
     # Qubit mapping
     if f2q == 'JWT':
@@ -661,25 +626,17 @@ def qubit_partition(qubitop, nqubit, quditvec):
     nqubit   -- Number of qubit operators including identity
     quditvec -- Qudit vector for reorganizing qubit Hilbert space
     """
-    # Check
     if sum(quditvec) != nqubit:
         raise ValueError("Wrong qudit vector elements")
 
-    # A list of tuples
     qubitstr = append_ids(qubitop, nqubit)
 
-    # New qubit strings
     newstrings = []
     for j in range(len(quditvec)):
-        # Initialize
         templist = []
-        # Loop for string as a list
         for p in range(quditvec[j]):
-            # Tuple
             temptuple = (p, qubitstr[sum(quditvec[:j]) + p][1])
-            # Add to list
             templist.append(temptuple)
-        # Update list of strings
         newstrings.append(templist)
 
     return newstrings
@@ -688,13 +645,11 @@ def snap_disp_ansatz_tf(Xvec, nfock, dtype=tf.complex128):
     """
     SNAP-displacement ansatz implemented entirely in TensorFlow
     """
-    # Unpack parameters
     alphavec, thetamat = unpack_params_snap_disp_tf(Xvec, nfock)
 
-    # Get ndepth
     ndepth = tf.shape(alphavec)[0]
 
-    # print(f"ndepth = {ndepth}")
+    # print(f"ndepth = {ndepth}") # for testing
 
     # Initialize with identity
     uni = tf.eye(nfock, dtype=dtype)
@@ -711,35 +666,13 @@ def snap_disp_ansatz_tf(Xvec, nfock, dtype=tf.complex128):
         # Apply to current unitary
         return tf.matmul(layer_op, current_uni)
 
-    # Use tf.scan or a loop to apply all layers
+    # apply all layers
     for i in tf.range(ndepth):
         uni = apply_layer(i, uni)
 
     return uni
 
-def snap_disp_ansatz_qt(Xvec, nfock):
-    """
-    SNAP-displacement ansatz.
 
-    Arguments:
-    Xvec -- ansatz parameters
-    nfock -- Fock cutoff
-    """
-    # Initialize
-    alphavec, thetamat = unpack_params_snap_disp(Xvec, nfock)
-    ndepth = thetamat.shape[0]
-    uni = snap_disp_op_qt(alphavec[0], thetamat[0, :])
-
-    # Check
-    if ndepth == 1:
-        return uni.full()
-
-    # Loop through blocks
-    for i in range(1, ndepth):
-        new_uni = snap_disp_op_qt(alphavec[i], thetamat[i, :])
-        uni = ( new_uni * uni )
-
-    return uni.full()
 
 def qubit_string_from_openfermion(qubitop, nqubit, quditvec):
     """
@@ -751,15 +684,15 @@ def qubit_string_from_openfermion(qubitop, nqubit, quditvec):
     nqubit   -- Number of qubit operators including identity
     quditvec -- Qudit vector for reorganizing qubit Hilbert space
     """
-    # Check
+    
     if sum(quditvec) != nqubit:
         raise ValueError("Wrong qudit vector elements")
 
-    # Get data
+
     qubit_strings = list(qubitop.terms.keys())
     coeffs = np.array(list( qubitop.terms.values() ))
 
-    # New qubit strings
+
     ops_list = []
     for qubit_op in qubit_strings:
         ops_list.append( simple_qubit_string(qubit_op, nqubit, quditvec) )
@@ -774,14 +707,11 @@ def append_ids(qubitstr, nqubits):
     qubitstr -- Input qubit string as a tuple of tuples
     nqubits  -- Number of qubits
     """
-    # Initialize a tuple
     newstr = [None] * nqubits
 
-    # Copy
     for p in range(len(qubitstr)):
         newstr[qubitstr[p][0]] = qubitstr[p]
 
-    # Updates
     for p in range(nqubits):
         if newstr[p] == None:
             newstr[p] = (p, 'I')
@@ -802,21 +732,14 @@ def qubit_partition(qubitop, nqubit, quditvec):
     if sum(quditvec) != nqubit:
         raise ValueError("Wrong qudit vector elements")
 
-    # A list of tuples
     qubitstr = append_ids(qubitop, nqubit)
 
-    # New qubit strings
     newstrings = []
     for j in range(len(quditvec)):
-        # Initialize
         templist = []
-        # Loop for string as a list
         for p in range(quditvec[j]):
-            # Tuple
             temptuple = (p, qubitstr[sum(quditvec[:j]) + p][1])
-            # Add to list
             templist.append(temptuple)
-        # Update list of strings
         newstrings.append(templist)
 
     return newstrings
@@ -832,14 +755,12 @@ def simple_qubit_string(qubitop, nqubit, quditvec):
     nqubit   -- Number of qubit operators including identity
     quditvec -- Qudit vector for reorganizing qubit Hilbert space
     """
-    # Check
+    
     if sum(quditvec) != nqubit:
         raise ValueError("Wrong qudit vector elements")
 
-    # A list of tuples
     qubitstr = qubit_partition(qubitop, nqubit, quditvec)
 
-    # New qubit strings
     string_list = []
     for j in range(len(quditvec)):
         string_list.append(''.join(op for _, op in qubitstr[j]))
@@ -848,16 +769,12 @@ def simple_qubit_string(qubitop, nqubit, quditvec):
 
 def prepare_ops_tf_no_hadamard(U_list, dtype=tf.complex128):
     """
-    Convert list of QuTip operators to TensorFlow tensors.
-    No Hadamard test - just direct conversion.
+    Convert list of QuTip operators to TensorFlow tensors without applying Hadamard transformation.
 
     Arguments:
     U_list -- list of four-qubit unitaries
     """
     T_list = [[] for _ in range(len(U_list))]
-    # for i in range(len(U_list)):
-    #     U_op = qt.Qobj(U_list[i])
-    #     T_list.append(qt2tf(U_op, dtype=dtype))
 
     for qumode_index in range(len(U_list)):
       for op_index in range(len(U_list[qumode_index])):
@@ -867,39 +784,38 @@ def prepare_ops_tf_no_hadamard(U_list, dtype=tf.complex128):
     return T_list
 
 def construct_bosonic_hamiltonian(H_ops, coeffs):
+    """Construct the full bosonic Hamiltonian from the list of operators and coefficients.
+    """
     nqumodes = len(H_ops)
     depth = len(H_ops[0])
 
-    # Initialize result and working buffer
-    # Calculate total dimension
     dim = 1
     for qumode_idx in range(nqumodes):
         dim *= len(H_ops[qumode_idx][0])
 
     H_bosonic = tf.zeros((dim, dim), dtype=H_ops[0][0].dtype)
 
-    # Process each gate one at a time
     for gate_idx in range(depth):
-        # Build multimode operator using nested kronecker products
-        # This avoids intermediate storage
         multimode_op = H_ops[0][gate_idx]
         for qumode_idx in range(1, nqumodes):
             multimode_op = tf.experimental.numpy.kron(
                 multimode_op,
                 H_ops[qumode_idx][gate_idx]
             )
-
-        # Use in-place addition with explicit coefficient
         H_bosonic = tf.add(H_bosonic, coeffs[gate_idx] * multimode_op)
 
     return H_bosonic
 
 def slice_bosonic_hamiltonian(H_bosonic, n_electrons):
+  """Slice the full bosonic Hamiltonian to the subspace with a fixed number of electrons."""
   indices_to_keep = [i for i in range(H_bosonic.shape[0]) if bin(i).count('1') == n_electrons]
   H_bosonic_sliced = tf.gather(tf.gather(H_bosonic, indices_to_keep, axis=0), indices_to_keep, axis=1)
   return H_bosonic_sliced
 
 def compute_fci_states_h4(R, nroots):
+    """
+    Compute FCI states for H4 using PySCF and PySCF's FCI solver.
+    """
     mol = gto.M(atom=[['H', (i*R,0,0)] for i in range(4)],
                 basis='sto-3g')
     mf = scf.RHF(mol).run(verbose=0)
@@ -911,6 +827,10 @@ def compute_fci_states_h4(R, nroots):
 def save_data_to_files(energies=[], state_params=[], results=[], psis=[], overlaps_list = [], save_dir = None, 
                        ndepth=None, nfocks=None, num_states=None, beta_factor=None, niter=None, threshold=None,
                          hhdis=None, coeffs=None):
+
+    """
+    Save data to JSON and NumPy files.
+    """
     SAVE_DIR = save_dir
     os.makedirs(SAVE_DIR, exist_ok=True)
 
@@ -948,17 +868,3 @@ def save_data_to_files(energies=[], state_params=[], results=[], psis=[], overla
         json.dump(scalar_values, f, indent=2)
 
     print(f"  [saved checkpoint to {SAVE_DIR} after state {len(energies)-1}]")
-
-def get_multimode_ops(H_ops):
-  nqumodes = len(H_ops)
-  depth = len(H_ops[0])
-  nfock = len(H_ops[0][0])
-
-  multimode_ops = []
-  for gate_idx in range(depth):
-    multimode_op = H_ops[0][gate_idx]
-    for qumode_idx in range(1, nqumodes):
-      multimode_op = tf.experimental.numpy.kron(multimode_op, H_ops[qumode_idx][gate_idx])
-    multimode_ops.append(multimode_op)
-
-  return multimode_ops
