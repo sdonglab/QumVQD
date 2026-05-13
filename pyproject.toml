@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "QumVQD"
+version = "0.1.0"
+requires-python = ">=3.9"
+license = "MIT"
+dependencies = [
+    # Vibrational_VQD dependencies (also applies to much of the rest of the codebase):
+    "qutip",
+    "silence-tensorflow",
+    "tensorflow",
+    "openfermion",
+    "openfermionpyscf",
+    "tensorflow-probability[tf]",
+    "scikit-learn",
+    "jupyter",
+    "ipykernel",
+] 
+
+[tool.setuptools.packages.find]
+include = ["helpers*", "third_party*"]
