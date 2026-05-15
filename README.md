@@ -26,6 +26,8 @@ NOTICE.md                     Third-party attribution
 
 Requires Python ≥ 3.9.
 
+Warning: Windows users must use Windows Subsystem for Linux due to dependency on [PySCF](https://pyscf.org/user/install.html).
+
 ```bash
 git clone https://github.com/sdonglab/QumVQD.git
 cd QumVQD
