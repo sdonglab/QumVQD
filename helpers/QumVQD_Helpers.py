@@ -856,12 +856,14 @@ def save_data_to_files(energies=[], state_params=[], results=[], psis=[], overla
 
     psis_np = [p.numpy() for p in psis]
     np.save(f'{SAVE_DIR}/psis.npy', psis_np)
-
     scalar_values = {
         'ndepth': int(ndepth), 'num_states': int(num_states),
         'beta_factor': float(beta_factor), 'niter': int(niter),
-        'threshold': float(threshold), 'hhdis': float(hhdis),
+        'threshold': float(threshold), 
     }
+    if hhdis is not None:
+        scalar_values['hhdis'] = float(hhdis)
+
     if coeffs is not None:
         scalar_values['coeffs'] = [float(c) for c in coeffs]
     with open(f'{SAVE_DIR}/run_parameters.json', 'w') as f:
