@@ -2,3 +2,4 @@ data/*.hdf5
 notebooks/Plots/*.png
 QumVQD.egg-info/
 notebooks/output_data/
+notebooks/params_CO2.json
