@@ -96,7 +96,7 @@ from .bosonic_form import harmonic_oscillators, taylor_to_bosonic # [Marlon Jost
 from pathlib import Path # [Marlon Jost] added import statement
 
 def hamil(name):
-    data_path = Path(__file__).parent.parent.parent / "data" / f"{name}_V2.hdf5" # [Marlon Jost] edited to use pathlib for constructing the file path
+    data_path = Path(__file__).parent.parent.parent / "data" / f"{name}.hdf5" # [Marlon Jost] edited to use pathlib for constructing the file path
     with h5py.File(data_path, "r") as f:
         # with h5py.File(f'data/{name}.hdf5', 'r') as f:
         taylor_1D = f["taylor_1D"][()]
