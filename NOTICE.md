@@ -24,13 +24,18 @@ Functions in `helpers/QumVQD_Helpers.py` that are derived from the
 The following modifications were applied:
 
 - Consolidated standalone notebook cells into a single Python module
-  installable via `pip install -e .`
+  installable via `pip install -e .`.
 - Reimplemented the SNAP operator using `tf.linalg.diag` in place of
-  the projector-sum form for efficiency
+  the projector-sum form for efficiency.
 - Generalized the two-mode SNAP-displacement-with-beamsplitter ansatz
   to an arbitrary-`N`-mode ansatz with pairwise beamsplitter coupling
+  discluding the hadamard test portion from the original code.
 - Replaced the upstream VQE loss/optimizer routine with a variational
   quantum deflation (VQD) implementation supporting overlap-penalty
-  excited-state search
+  excited-state search.
 
-TODO: add more detail about use of `Vibrational_Dynamics_on_Bosonic_QCs`
+Code and data derived from `Vibrational_Dynamics_on_Bosonic_QCs`:
+
+- third_party/vibrational_dynamics/ contains copies of the upstream Python modules (util_hamil.py, util_gfro.py, util_qudratic.py, qff.py, bosonic_form.py) used to construct vibrational Hamiltonians and perform Gaussian fragment optimization (GFRO). See headers in these files for citations and modifications made.
+- data/H2S.hdf5 and data/CO2.hdf5 are vibrational Hamiltonian data files sent to us by Shreyas Malpathak and are consumed via the upstream hamil() loader.
+- In notebooks/Vibrational_VQD.ipynb, the cells under the "Vibrational Hamiltonian / prereqs" and "Vibrational Hamiltonian / Run Fragmentation" sections are adapted from main_gfro.py code in the upstream repository, with modifications to parameterize molecule, mode count, fragment count, and output paths via the notebook's "Run Options" cell and to store the fragment parameters and the residual quadratic Hamiltonian in pickle files.
