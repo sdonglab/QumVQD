@@ -69,3 +69,16 @@ for full attribution and license text.
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+
+## Citation
+
+@misc{jost2026excitedstatequantumchemistryqumodebased,
+      title={Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation}, 
+      author={Marlon F. Jost and Sijia S. Dong},
+      year={2026},
+  int={2604.13457},
+      archivePrefix={arXiv},
+      primaryClass={quant-ph},
+      url={https://arxiv.org/abs/2604.13457}, 
+} 
