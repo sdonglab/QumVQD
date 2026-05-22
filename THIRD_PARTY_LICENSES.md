@@ -11,8 +11,8 @@ License: MIT
 Copyright (c) 2025 Rishab Dutta
 Full text: third_party/LICENSE_qumode_est_paper.txt
 
-Derived files: helpers/QumVQD_Helpers.py, notebooks/Electronic_QumVQD.ipynb (selected functions; see file header
-for the list and the modifications applied).
+Derived files: helpers/QumVQD_Helpers.py, notebooks/Electronic_QumVQD.ipynb (selected functions; 
+see file header for details).
 
 ## 2. Vibrational_Dynamics_on_Bosonic_QCs (Malpathak & Das Kallullathil)
 
@@ -24,4 +24,4 @@ Copyright (c) 2026 Shreyas Malpathak and Sangeeth Das Kallullathil
 Full text: third_party/LICENSE_Vibrational_Dynamics_on_Bosonic_QCs.txt
 
 Derived files: bosonic_form.py, qff.py, util_gfro.py, util.hamil.py, util_qudratic.py
-Modifications: Modified imports to work with this project structure where necessary
+Modifications: Modified imports to work with this project structure where necessary, modified file paths

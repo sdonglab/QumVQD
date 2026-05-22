@@ -1,13 +1,16 @@
 # Third-party code
 
 This package contains code derived from the `qumode_est_paper` repository
-by Rishab Dutta (https://github.com/rishabdchem/qumode_est_paper),
+by Rishab Dutta et al. (https://github.com/rishabdchem/qumode_est_paper) and the 
+`Vibrational_Dynamics_on_Bosonic_QCs` repository by Shreyas Malpathak et al. 
+(https://github.com/shreyasvm3/Vibrational_Dynamics_on_Bosonic_QCs), both 
 released under the MIT License.
 
-The original license text is reproduced in `third_party/LICENSE_qumode_est_paper.txt`.
+The original license text is reproduced in `third_party/LICENSE_qumode_est_paper.txt` 
+and `third_party/LICENSE_Vibrational_Dynamics_on_Bosonic_QCs.txt`.
 
-Functions in `helpers/QumVQD_Helpers.py` that are derived from the upstream
-repository (with modifications) include:
+Functions in `helpers/QumVQD_Helpers.py` that are derived from the 
+`qumode_est_paper` repository (with modifications) include:
 
 - Single-mode primitives: `destroy_tf`, `create_tf`, `displace_tf`,
   `snap_op_tf`, `snap_disp_op_tf`, `snap_disp_op_qt`,
@@ -29,3 +32,5 @@ The following modifications were applied:
 - Replaced the upstream VQE loss/optimizer routine with a variational
   quantum deflation (VQD) implementation supporting overlap-penalty
   excited-state search
+
+TODO: add more detail about use of `Vibrational_Dynamics_on_Bosonic_QCs`
