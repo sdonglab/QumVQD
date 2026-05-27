@@ -1,0 +1,161 @@
+num_prev_states = 0
+
+Finding state 0...
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 0]
+State 0 energy: 1.548910
+Converged: True
+Number of iterations: 361
+
+Finding state 1...
+  searching 1500 candidates for max_overlap < 1e-08...
+Overlap with state 0: 4.948526e-10
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 1]
+State 1 energy: 3.212054
+Converged: True
+Number of iterations: 376
+
+Finding state 2...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 2.12e-08
+Overlap with state 0: 4.321224e-09
+Overlap with state 1: 1.775059e-09
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 2]
+State 2 energy: 3.212055
+Converged: True
+Number of iterations: 321
+
+Finding state 3...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 3.12e-07
+Overlap with state 0: 8.475586e-10
+Overlap with state 1: 5.817463e-10
+Overlap with state 2: 1.666900e-10
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 3]
+State 3 energy: 3.212058
+Converged: False
+Number of iterations: 500
+
+Finding state 4...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 4.03e-07
+Overlap with state 0: 1.106085e-09
+Overlap with state 1: 1.828183e-09
+Overlap with state 2: 3.477241e-10
+Overlap with state 3: 6.150723e-09
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 4]
+State 4 energy: 3.493753
+Converged: True
+Number of iterations: 327
+
+Finding state 5...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 8.12e-07
+Overlap with state 0: 1.751112e-10
+Overlap with state 1: 3.569542e-10
+Overlap with state 2: 5.040918e-10
+Overlap with state 3: 9.324149e-11
+Overlap with state 4: 8.148974e-10
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 5]
+State 5 energy: 4.362033
+Converged: False
+Number of iterations: 500
+
+Finding state 6...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 4.42e-07
+Overlap with state 0: 5.148890e-10
+Overlap with state 1: 1.063946e-11
+Overlap with state 2: 1.596781e-09
+Overlap with state 3: 1.325340e-10
+Overlap with state 4: 3.182232e-10
+Overlap with state 5: 2.045571e-09
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 6]
+State 6 energy: 4.362033
+Converged: True
+Number of iterations: 437
+
+Finding state 7...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 3.89e-07
+Overlap with state 0: 3.396724e-04
+Overlap with state 1: 9.955803e-04
+Overlap with state 2: 2.103748e-04
+Overlap with state 3: 1.218109e-03
+Overlap with state 4: 1.192454e-04
+Overlap with state 5: 4.002227e-04
+Overlap with state 6: 9.709786e-05
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 7]
+State 7 energy: 13.709972
+Converged: True
+Number of iterations: 2
+
+Finding state 8...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 1.55e-05
+Overlap with state 0: 1.763224e-07
+Overlap with state 1: 4.376161e-07
+Overlap with state 2: 7.653051e-08
+Overlap with state 3: 4.922701e-07
+Overlap with state 4: 5.527257e-08
+Overlap with state 5: 1.518917e-07
+Overlap with state 6: 1.864145e-08
+Overlap with state 7: 3.765629e-04
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 8]
+State 8 energy: 4.372695
+Converged: True
+Number of iterations: 459
+
+Finding state 9...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 7.23e-06
+Overlap with state 0: 6.820164e-09
+Overlap with state 1: 2.101620e-08
+Overlap with state 2: 8.499659e-09
+Overlap with state 3: 3.218195e-08
+Overlap with state 4: 3.100339e-09
+Overlap with state 5: 1.607639e-08
+Overlap with state 6: 9.995677e-10
+Overlap with state 7: 1.960859e-05
+Overlap with state 8: 4.243917e-10
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 9]
+State 9 energy: 4.579203
+Converged: True
+Number of iterations: 395
+
+Finding state 10...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 1.45e-05
+Overlap with state 0: 1.018175e-02
+Overlap with state 1: 3.341030e-02
+Overlap with state 2: 2.710731e-02
+Overlap with state 3: 4.549446e-02
+Overlap with state 4: 9.764652e-03
+Overlap with state 5: 3.173880e-03
+Overlap with state 6: 3.805315e-03
+Overlap with state 7: 5.715366e-02
+Overlap with state 8: 7.329009e-03
+Overlap with state 9: 7.806426e-04
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 10]
+State 10 energy: 10.966206
+Converged: True
+Number of iterations: 2
+
+Finding state 11...
+  searching 1500 candidates for max_overlap < 1e-08...
+  best init found with max overlap = 8.35e-04
+Overlap with state 0: 1.910964e-05
+Overlap with state 1: 4.587934e-05
+Overlap with state 2: 3.796659e-05
+Overlap with state 3: 6.026558e-05
+Overlap with state 4: 1.249573e-05
+Overlap with state 5: 3.499738e-06
+Overlap with state 6: 4.677485e-06
+Overlap with state 7: 3.239548e-05
+Overlap with state 8: 8.731979e-06
+Overlap with state 9: 8.103585e-07
+Overlap with state 10: 1.012972e-03
+  [saved checkpoint to /content/drive/MyDrive/Dong Lab/Bosonic VQE/bosonic-vqe/VQD Data/H4_Sliced/Initialization_Experiment_R=0.25_First_12_States_V2 after state 11]
+State 11 energy: 5.337428
+Converged: True
+Number of iterations: 428
+Energies found: [np.float64(1.5489096818807158), np.float64(3.2120538969622254), np.float64(3.212054502939459), np.float64(3.2120578558326125), np.float64(3.4937532430518456), np.float64(4.362033117909343), np.float64(4.362032993868171), np.float64(13.709971832452442), np.float64(4.372695473633139), np.float64(4.579203483764382), np.float64(10.96620579537936), np.float64(5.337428272789089)]

@@ -1,0 +1,289 @@
+[
+
+  [
+    {
+      "with_state": 0,
+      "overlap": 5.0310207808577865e-11
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 5.059978501531893e-12
+    },
+    {
+      "with_state": 1,
+      "overlap": 4.6565890448940256e-10
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 6.518767973400031e-05
+    },
+    {
+      "with_state": 1,
+      "overlap": 0.009655029537253555
+    },
+    {
+      "with_state": 2,
+      "overlap": 0.024556252930035674
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 2.7192735997755188e-14
+    },
+    {
+      "with_state": 1,
+      "overlap": 9.273382706918923e-11
+    },
+    {
+      "with_state": 2,
+      "overlap": 4.8226490498159774e-14
+    },
+    {
+      "with_state": 3,
+      "overlap": 1.5135391951079977e-13
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 1.0078359794130804e-09
+    },
+    {
+      "with_state": 1,
+      "overlap": 7.67913781748221e-08
+    },
+    {
+      "with_state": 2,
+      "overlap": 1.8265785773875993e-07
+    },
+    {
+      "with_state": 3,
+      "overlap": 7.32251421110763e-06
+    },
+    {
+      "with_state": 4,
+      "overlap": 1.4281224142516465e-10
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 1.4927521728008884e-12
+    },
+    {
+      "with_state": 1,
+      "overlap": 3.4834692823210105e-11
+    },
+    {
+      "with_state": 2,
+      "overlap": 7.581564644160088e-13
+    },
+    {
+      "with_state": 3,
+      "overlap": 7.856316011342659e-11
+    },
+    {
+      "with_state": 4,
+      "overlap": 2.4792246622313277e-12
+    },
+    {
+      "with_state": 5,
+      "overlap": 2.545622652682921e-12
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 3.8383633387029334e-11
+    },
+    {
+      "with_state": 1,
+      "overlap": 7.601320953456125e-11
+    },
+    {
+      "with_state": 2,
+      "overlap": 2.309955272352434e-10
+    },
+    {
+      "with_state": 3,
+      "overlap": 3.2959762655397037e-09
+    },
+    {
+      "with_state": 4,
+      "overlap": 2.6561207015650427e-11
+    },
+    {
+      "with_state": 5,
+      "overlap": 3.66008735577466e-11
+    },
+    {
+      "with_state": 6,
+      "overlap": 3.8285832705470016e-11
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 0.013365827281284716
+    },
+    {
+      "with_state": 1,
+      "overlap": 0.0059688876953002635
+    },
+    {
+      "with_state": 2,
+      "overlap": 0.015395829364297812
+    },
+    {
+      "with_state": 3,
+      "overlap": 0.03319249713203919
+    },
+    {
+      "with_state": 4,
+      "overlap": 0.04501237023107236
+    },
+    {
+      "with_state": 5,
+      "overlap": 0.0023772172535346816
+    },
+    {
+      "with_state": 6,
+      "overlap": 0.018261392158107882
+    },
+    {
+      "with_state": 7,
+      "overlap": 0.009856813508767662
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 2.712616800534704e-09
+    },
+    {
+      "with_state": 1,
+      "overlap": 5.10357595823258e-08
+    },
+    {
+      "with_state": 2,
+      "overlap": 1.4436812341942865e-07
+    },
+    {
+      "with_state": 3,
+      "overlap": 6.3036168494036134e-06
+    },
+    {
+      "with_state": 4,
+      "overlap": 5.175383032043746e-09
+    },
+    {
+      "with_state": 5,
+      "overlap": 2.4052819677867496e-10
+    },
+    {
+      "with_state": 6,
+      "overlap": 2.090493680765624e-09
+    },
+    {
+      "with_state": 7,
+      "overlap": 1.180344249232837e-09
+    },
+    {
+      "with_state": 8,
+      "overlap": 1.1468195127433695e-07
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 2.7155197089281864e-09
+    },
+    {
+      "with_state": 1,
+      "overlap": 4.4990397033433375e-08
+    },
+    {
+      "with_state": 2,
+      "overlap": 7.171339277005318e-08
+    },
+    {
+      "with_state": 3,
+      "overlap": 3.380584928211017e-06
+    },
+    {
+      "with_state": 4,
+      "overlap": 8.05678343758658e-09
+    },
+    {
+      "with_state": 5,
+      "overlap": 3.1844475457529257e-10
+    },
+    {
+      "with_state": 6,
+      "overlap": 3.671530342149736e-09
+    },
+    {
+      "with_state": 7,
+      "overlap": 2.0773270861194897e-09
+    },
+    {
+      "with_state": 8,
+      "overlap": 1.885200856063634e-07
+    },
+    {
+      "with_state": 9,
+      "overlap": 1.0122329628722893e-12
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 1.0698285273960749e-10
+    },
+    {
+      "with_state": 1,
+      "overlap": 2.60242954739451e-12
+    },
+    {
+      "with_state": 2,
+      "overlap": 1.1824241930593978e-10
+    },
+    {
+      "with_state": 3,
+      "overlap": 4.6324645955307786e-10
+    },
+    {
+      "with_state": 4,
+      "overlap": 1.2307232264305797e-10
+    },
+    {
+      "with_state": 5,
+      "overlap": 3.834451252114879e-11
+    },
+    {
+      "with_state": 6,
+      "overlap": 3.911580818757117e-11
+    },
+    {
+      "with_state": 7,
+      "overlap": 1.2607361906958219e-10
+    },
+    {
+      "with_state": 8,
+      "overlap": 1.3600268028352494e-10
+    },
+    {
+      "with_state": 9,
+      "overlap": 5.795970185380565e-11
+    },
+    {
+      "with_state": 10,
+      "overlap": 2.7952831619436154e-11
+    }
+  ]
+]
