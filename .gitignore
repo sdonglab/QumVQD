@@ -1,4 +1,5 @@
 notebooks/Plots/*.png
+notebooks/Plots/*.tiff
 QumVQD.egg-info/
 notebooks/output_data/
 notebooks/params_CO2.json
