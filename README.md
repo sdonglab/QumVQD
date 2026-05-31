@@ -4,7 +4,7 @@ Qumode-based Variational Quantum Deflation (QumVQD): a framework for computing
 electronic and vibrational excited-state energies on bosonic / qumode quantum
 hardware models. QumVQD maps molecular Hamiltonians onto one or more qumodes and
 optimizes a SNAP + displacement + beamsplitter ansatz in TensorFlow, recovering
-ground and excited states through an overlap-penalty deflation loss.
+ground and excited states through an overlap-penalty based cost function.
 
 
 ## Repository layout
@@ -81,9 +81,9 @@ MIT — see [LICENSE](LICENSE).
       title={Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation}, 
       author={Marlon F. Jost and Sijia S. Dong},
       year={2026},
-  int={2604.13457},
+      eprint={2604.13457},
       archivePrefix={arXiv},
       primaryClass={quant-ph},
       url={https://arxiv.org/abs/2604.13457}, 
-} 
+}
 ```
