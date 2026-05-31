@@ -12,14 +12,19 @@ overlap-penalty deflation loss.
 
 ```
 helpers/QumVQD_Helpers.py    Core ansatz, VQD loss, optimizer, Hamiltonians
-third_party/vibrational_dynamics/   Vibrational Hamiltonian builders (QFF, GFRO)
+third_party/vibrational_dynamics/   Vibrational Hamiltonian fragmentation code
 notebooks/
   Electronic_QumVQD.ipynb    Electronic excited states for H2 / H4
   Vibrational_VQD.ipynb      Vibrational excited states
   Manuscript_Plotting.ipynb  Figures for the manuscript
+  Plots/                     Stores plots produced by 
 data/                         Data required to run notebooks
 pyproject.toml                Package metadata (installable as `QumVQD`)
 NOTICE.md                     Third-party attribution
+.gitattributes                Handles Git LFS configuration
+.gitignore                    Designates which files for Git to ignore
+LICENSE.md                    MIT License
+THIRD_PARTY_LICENSES.md       Attribution for third-party code   
 ```
 
 ## Installation
