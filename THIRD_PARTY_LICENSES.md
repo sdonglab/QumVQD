@@ -13,6 +13,7 @@ Full text: third_party/LICENSE_qumode_est_paper.txt
 
 Derived files: helpers/QumVQD_Helpers.py, notebooks/Electronic_QumVQD.ipynb (selected functions; 
 see file header for details).
+Data: data/snap-four-qubit-dict_nd16.npy
 
 ## 2. Vibrational_Dynamics_on_Bosonic_QCs (Malpathak & Das Kallullathil)
 
