@@ -1,10 +1,10 @@
 # QumVQD
 
 Variational Quantum Deflation (VQD) on bosonic / qumode hardware models, applied
-to electronic and vibrational excited-state problems. QumVQD partitions qubit
+to electronic and vibrational excited-state problems. QumVQD partitions
 Hamiltonians (e.g. linear-symmetric H2 / H4 under Jordan–Wigner) onto one or
 more qumodes and optimizes a SNAP + displacement + beamsplitter ansatz in
-TensorFlow to recover the ground state and a tower of excited states via an
+TensorFlow to recover the ground and excited states via an
 overlap-penalty deflation loss.
 
 
