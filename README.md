@@ -31,6 +31,7 @@ THIRD_PARTY_LICENSES.md       Attribution for third-party code
 Requires Python ≥ 3.9.
 
 Warning: Windows users must use Windows Subsystem for Linux due to dependency on [PySCF](https://pyscf.org/user/install.html).
+Moreover, this repository uses Git LFS for the .hdf5 data files. Install it first (git lfs install), then clone.
 
 ```bash
 git clone https://github.com/sdonglab/QumVQD.git
