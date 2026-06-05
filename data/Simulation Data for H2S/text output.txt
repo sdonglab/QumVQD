@@ -1,0 +1,31 @@
+
+Finding state 0...
+State 0 energy: 3301.734323
+Converged: False
+
+Finding state 1...
+State 1 energy: 4563.385905
+Converged: False
+Overlap with state 0: 1.184202e-16
+
+Finding state 2...
+State 2 energy: 5807.264514
+Converged: False
+Overlap with state 0: 2.244173e-16
+Overlap with state 1: 2.279137e-17
+
+Finding state 3...
+State 3 energy: 5840.035909
+Converged: False
+Overlap with state 0: 4.360260e-17
+Overlap with state 1: 6.999247e-17
+Overlap with state 2: 5.613899e-17
+
+Finding state 4...
+State 4 energy: 5899.937132
+Converged: False
+Overlap with state 0: 1.220613e-13
+Overlap with state 1: 8.558053e-13
+Overlap with state 2: 9.582336e-12
+Overlap with state 3: 8.602404e-14
+Energies found: [np.float64(3301.734323178507), np.float64(4563.385904767243), np.float64(5807.2645136495), np.float64(5840.035908675143), np.float64(5899.937131541012)]

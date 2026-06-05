@@ -1,0 +1,15 @@
+RUN_FRAGMENTATION = False
+MOLECULE = 'H2S'
+data_path = 'my_data/H_frags_H2S_3_3Frags.pkl' # if RUN_FRAGMENTATION, save to this location, else read from this location
+TRUNCATION = 4
+
+# VQD Parameters:
+num_states = 5
+ndepth = 25
+niter = 3000
+threshold = 1e-7
+nfock=64
+
+beta_factor = 4.0 * norm_m(H_eff)
+H_ops = H_frags_tf
+coeffs = np.ones(len(H_ops))

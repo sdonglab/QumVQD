@@ -1,0 +1,14 @@
+{
+  "coeffs": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "ndepth": 10,
+  "num_states": 8,
+  "beta_factor": 484793.310789831,
+  "niter": 2000,
+  "threshold": 1e-06
+}
