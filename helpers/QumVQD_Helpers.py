@@ -823,6 +823,17 @@ def compute_fci_states_h4(R, nroots):
     e, _ = cis.kernel(nroots=nroots)
     return np.sort(e)
 
+def compute_fci_states_h2(R, nroots):
+    """
+    Compute FCI states for H2 using PySCF and PySCF's FCI solver.
+    """
+    mol = gto.M(atom=[['H', (i*R,0,0)] for i in range(2)],
+                basis='sto-3g')
+    mf = scf.RHF(mol).run(verbose=0)
+    cis = fci.FCI(mol, mf.mo_coeff)
+    e, _ = cis.kernel(nroots=nroots)
+    return np.sort(e)
+
 
 def save_data_to_files(energies=[], state_params=[], results=[], psis=[], overlaps_list = [], save_dir = None, 
                        ndepth=None, nfocks=None, num_states=None, beta_factor=None, niter=None, threshold=None,
