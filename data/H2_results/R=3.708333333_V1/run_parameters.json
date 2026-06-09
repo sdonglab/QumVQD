@@ -1,0 +1,8 @@
+{
+  "ndepth": 7,
+  "num_states": 8,
+  "beta_factor": 5.0,
+  "niter": 3000,
+  "threshold": 1e-07,
+  "hhdis": 3.708333333
+}

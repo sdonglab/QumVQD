@@ -1,0 +1,129 @@
+[
+  [],
+  [
+    {
+      "with_state": 0,
+      "overlap": 2.1406340202480588e-15
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 7.7164322161294e-17
+    },
+    {
+      "with_state": 1,
+      "overlap": 6.235615428682415e-16
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 1.1168184548567573e-18
+    },
+    {
+      "with_state": 1,
+      "overlap": 4.52088187856542e-17
+    },
+    {
+      "with_state": 2,
+      "overlap": 1.2230634484082515e-16
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 4.2390250542335785e-17
+    },
+    {
+      "with_state": 1,
+      "overlap": 5.667020442282313e-16
+    },
+    {
+      "with_state": 2,
+      "overlap": 2.612257629949647e-17
+    },
+    {
+      "with_state": 3,
+      "overlap": 5.169679042024946e-17
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 2.0720954603766413e-17
+    },
+    {
+      "with_state": 1,
+      "overlap": 2.19431905184217e-16
+    },
+    {
+      "with_state": 2,
+      "overlap": 2.60548563950241e-16
+    },
+    {
+      "with_state": 3,
+      "overlap": 2.65848867673156e-18
+    },
+    {
+      "with_state": 4,
+      "overlap": 6.294238973558789e-18
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 0.574263975338412
+    },
+    {
+      "with_state": 1,
+      "overlap": 0.1984046811821696
+    },
+    {
+      "with_state": 2,
+      "overlap": 0.12400626593395186
+    },
+    {
+      "with_state": 3,
+      "overlap": 0.03613036013684132
+    },
+    {
+      "with_state": 4,
+      "overlap": 0.0507251627115279
+    },
+    {
+      "with_state": 5,
+      "overlap": 0.016469579206812864
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 0.5175506079045582
+    },
+    {
+      "with_state": 1,
+      "overlap": 0.2545352260559031
+    },
+    {
+      "with_state": 2,
+      "overlap": 0.15908825556290582
+    },
+    {
+      "with_state": 3,
+      "overlap": 0.04635171129862892
+    },
+    {
+      "with_state": 4,
+      "overlap": 0.021190479954651266
+    },
+    {
+      "with_state": 5,
+      "overlap": 0.001283673620246207
+    },
+    {
+      "with_state": 6,
+      "overlap": 0.010339477134199632
+    }
+  ]
+]

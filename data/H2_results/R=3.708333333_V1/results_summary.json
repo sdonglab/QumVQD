@@ -1,0 +1,50 @@
+[
+  {
+    "num_iterations": 670,
+    "converged": true,
+    "failed": false,
+    "objective_value": -0.9331907839859748
+  },
+  {
+    "num_iterations": 15,
+    "converged": true,
+    "failed": false,
+    "objective_value": -0.9331527537648218
+  },
+  {
+    "num_iterations": 24,
+    "converged": true,
+    "failed": false,
+    "objective_value": -0.9331525907781052
+  },
+  {
+    "num_iterations": 29,
+    "converged": true,
+    "failed": false,
+    "objective_value": -0.9331526205117563
+  },
+  {
+    "num_iterations": 261,
+    "converged": true,
+    "failed": false,
+    "objective_value": -0.3012373986961346
+  },
+  {
+    "num_iterations": 24,
+    "converged": true,
+    "failed": false,
+    "objective_value": -0.30118198640297966
+  },
+  {
+    "num_iterations": 737,
+    "converged": true,
+    "failed": false,
+    "objective_value": 4.066809216077584
+  },
+  {
+    "num_iterations": 18,
+    "converged": true,
+    "failed": false,
+    "objective_value": 4.066847391574846
+  }
+]

@@ -1,0 +1,129 @@
+[
+  [],
+  [
+    {
+      "with_state": 0,
+      "overlap": 1.0272334336911625e-17
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 4.5970858025865314e-18
+    },
+    {
+      "with_state": 1,
+      "overlap": 1.3119807494407459e-16
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 2.629785735520459e-19
+    },
+    {
+      "with_state": 1,
+      "overlap": 1.14637389944288e-17
+    },
+    {
+      "with_state": 2,
+      "overlap": 5.3792148532705216e-17
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 7.037844072034881e-17
+    },
+    {
+      "with_state": 1,
+      "overlap": 7.058405009058095e-18
+    },
+    {
+      "with_state": 2,
+      "overlap": 1.57065710974543e-18
+    },
+    {
+      "with_state": 3,
+      "overlap": 1.220505138475049e-18
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 5.573226014183743e-17
+    },
+    {
+      "with_state": 1,
+      "overlap": 6.278787925990414e-17
+    },
+    {
+      "with_state": 2,
+      "overlap": 6.5774448240686775e-18
+    },
+    {
+      "with_state": 3,
+      "overlap": 1.5553263215865988e-18
+    },
+    {
+      "with_state": 4,
+      "overlap": 6.535741974220145e-18
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 0.9999999979481398
+    },
+    {
+      "with_state": 1,
+      "overlap": 1.4165686442589132e-09
+    },
+    {
+      "with_state": 2,
+      "overlap": 6.255507386701012e-10
+    },
+    {
+      "with_state": 3,
+      "overlap": 9.384561829927439e-12
+    },
+    {
+      "with_state": 4,
+      "overlap": 1.3003320424494396e-16
+    },
+    {
+      "with_state": 5,
+      "overlap": 1.0515006248481783e-15
+    }
+  ],
+  [
+    {
+      "with_state": 0,
+      "overlap": 1.1075009894426228e-09
+    },
+    {
+      "with_state": 1,
+      "overlap": 0.865881026539077
+    },
+    {
+      "with_state": 2,
+      "overlap": 0.11778739851182785
+    },
+    {
+      "with_state": 3,
+      "overlap": 0.01633156665228926
+    },
+    {
+      "with_state": 4,
+      "overlap": 9.82489194536115e-17
+    },
+    {
+      "with_state": 5,
+      "overlap": 1.5563425059253298e-15
+    },
+    {
+      "with_state": 6,
+      "overlap": 7.436551660269676e-17
+    }
+  ]
+]
