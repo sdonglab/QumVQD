@@ -77,6 +77,8 @@ MIT — see [LICENSE](LICENSE).
 
 
 ## Citation
+
+Marlon F. Jost, Sijia S. Dong*. [Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation](https://arxiv.org/abs/2604.13457). arXiv. 2026. arXiv:2604.13457 
 ```
 @misc{jost2026excitedstatequantumchemistryqumodebased,
       title={Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation}, 
