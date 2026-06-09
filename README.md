@@ -1,5 +1,7 @@
 # QumVQD
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20479296.svg)](https://doi.org/10.5281/zenodo.20479296)
+
 Qumode-based Variational Quantum Deflation (QumVQD): a framework for computing
 electronic and vibrational excited-state energies on bosonic / qumode quantum
 hardware models. QumVQD maps molecular Hamiltonians onto one or more qumodes and
@@ -76,9 +78,10 @@ for full attribution and license text.
 MIT — see [LICENSE](LICENSE).
 
 
-## Citation
+## Citations
 
-Marlon F. Jost, Sijia S. Dong*. [Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation](https://arxiv.org/abs/2604.13457). arXiv. 2026. arXiv:2604.13457 
+### Paper
+Marlon F. Jost, Sijia S. Dong. [Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation](https://arxiv.org/abs/2604.13457). arXiv. 2026. arXiv:2604.13457 
 ```
 @misc{jost2026excitedstatequantumchemistryqumodebased,
       title={Excited-State Quantum Chemistry on Qumode-Based Processors via Variational Quantum Deflation}, 
@@ -90,3 +93,6 @@ Marlon F. Jost, Sijia S. Dong*. [Excited-State Quantum Chemistry on Qumode-Based
       url={https://arxiv.org/abs/2604.13457}, 
 }
 ```
+### Code
+Jost, M. and Dong, S. (2026) “QumVQD: Qumode-Based Variational Quantum Deflation Framework”. Zenodo. DOI:10.5281/zenodo.20479296
+
